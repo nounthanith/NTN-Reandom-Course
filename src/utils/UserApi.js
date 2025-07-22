@@ -12,6 +12,6 @@ async function getUser() {
   }
 }
 
-getUser()
+getUser()  
 
 export default getUser;
