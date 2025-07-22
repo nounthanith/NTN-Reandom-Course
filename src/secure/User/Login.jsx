@@ -56,7 +56,7 @@ function Login() {
             type="email"
             name="email"
             placeholder="Email"
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
+            className="w-full border border-gray-300 text-black rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
             value={form.email}
             onChange={handleChange}
             required
@@ -65,7 +65,7 @@ function Login() {
             type="password"
             name="password"
             placeholder="Password"
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
+            className="w-full border border-gray-300 text-black rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
             value={form.password}
             onChange={handleChange}
             required

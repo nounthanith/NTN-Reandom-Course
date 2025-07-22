@@ -6,6 +6,7 @@ import Profile from "./pages/Profile.jsx";
 import Navbar from "./layouts/Navbar.jsx";
 import Protect from "./secure/User/Protect.jsx";
 import Home from "./pages/Home.jsx";
+import CreatCourse from "./components/CreatCourse.jsx";
 
 function App() {
   return (
@@ -31,6 +32,15 @@ function App() {
             <Protect>
               <Navbar />
               <Home />
+            </Protect>
+          }
+        />
+        <Route
+          path="/create-course"
+          element={
+            <Protect>
+              <Navbar />
+              <CreatCourse />
             </Protect>
           }
         />

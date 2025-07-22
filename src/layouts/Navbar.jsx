@@ -21,7 +21,7 @@ function Navbar() {
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0 text-pink-600 text-2xl font-bold">
-            <Link to="/">MyApp</Link>
+            <Link to="/">NTN</Link>
           </div>
 
           {/* Desktop Links */}

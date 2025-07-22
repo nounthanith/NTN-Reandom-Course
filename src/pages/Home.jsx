@@ -1,8 +1,11 @@
 import React from 'react'
+import Course from '../components/Course'
 
 function Home() {
   return (
-    <div className='absolute top-20 bg-base-200'> asdf</div>
+    <div className=''>
+      <Course />
+    </div>
   )
 }
 
