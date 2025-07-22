@@ -7,6 +7,7 @@ const navItems = [
   { name: "Home", link: "/home" },
   { name: "Profile", link: "/profile" },
   { name: "Contact", link: "/contact" },
+  { name: "Admin", link: "/admin" },
   { name: "Login", link: "/", special: true },
 ];
 
@@ -55,7 +56,7 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden  px-4 pt-2 pb-4 space-y-2">
+        <div className="md:hidden  px-4 pt-2 pb-4 space-y-2 text-center text-2xl">
           {navItems.map((item) => (
             <Link
               key={item.name}

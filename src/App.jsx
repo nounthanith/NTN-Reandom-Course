@@ -9,6 +9,8 @@ import Home from "./pages/Home.jsx";
 import CreatCourse from "./components/course/CreatCourse.jsx";
 import Footer from "./layouts/Footer.jsx";
 import Contact from "./components/Contact/Contact.jsx";
+import AdminProtect from "./secure/User/ProtectAdmin.jsx";
+import Admin from "./pages/Admin.jsx";
 
 function App() {
   return (
@@ -54,6 +56,18 @@ function App() {
               <Navbar />
               <Contact />
             </Protect>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <AdminProtect>
+
+              <Protect>
+              <Navbar />
+              <Admin />
+            </Protect>
+            </AdminProtect>
           }
         />
       </Routes>
