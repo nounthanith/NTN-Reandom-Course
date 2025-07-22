@@ -6,7 +6,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 const navItems = [
   { name: "Home", link: "/home" },
   { name: "Profile", link: "/profile" },
-//   { name: "Contact", link: "/contact" },
+  { name: "Contact", link: "/contact" },
   { name: "Login", link: "/", special: true },
 ];
 

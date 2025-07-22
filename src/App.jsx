@@ -6,8 +6,9 @@ import Profile from "./pages/Profile.jsx";
 import Navbar from "./layouts/Navbar.jsx";
 import Protect from "./secure/User/Protect.jsx";
 import Home from "./pages/Home.jsx";
-import CreatCourse from "./components/CreatCourse.jsx";
+import CreatCourse from "./components/course/CreatCourse.jsx";
 import Footer from "./layouts/Footer.jsx";
+import Contact from "./components/Contact/Contact.jsx";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Protect>
               <Navbar />
               <Home />
+              <Footer />
             </Protect>
           }
         />
@@ -45,8 +47,17 @@ function App() {
             </Protect>
           }
         />
+        <Route
+          path="/contact"
+          element={
+            <Protect>
+              <Navbar />
+              <Contact />
+            </Protect>
+          }
+        />
       </Routes>
-      <Footer />
+      
     </BrowserRouter>
     
   );

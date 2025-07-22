@@ -1,0 +1,315 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import NotFound from "./../../assets/Imgs/NotFound.jpg";
+import CreateCourse from "./CreatCourse";
+
+function Course() {
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const courseApi = "https://script.google.com/macros/s/AKfycbx8dxizPR2dMf6LkjinaFMbnietj4QAe3kbG5UIZFT740nww-B0fTelQaiVvnIGBHyD/exec";
+  const [courses, setCourses] = useState([]);
+  const [filteredCourses, setFilteredCourses] = useState([]);
+  const [filters, setFilters] = useState({
+    category: "",
+    language: "",
+    searchQuery: ""
+  });
+
+  // Extract unique categories and languages
+  const categories = [...new Set(courses.map(course => course[2]))];
+  const languages = [...new Set(courses.map(course => course[6]))];
+
+  useEffect(() => {
+    const getCourses = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(`${courseApi}?action=read`);
+        const result = await response.json();
+        if (result.status === "success") {
+          setCourses(result.data);
+          setFilteredCourses(result.data);
+        }
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getCourses();
+  }, []);
+
+  useEffect(() => {
+    // Apply filters whenever filters or courses change
+    let result = [...courses];
+    
+    if (filters.category) {
+      result = result.filter(course => course[2] === filters.category);
+    }
+    
+    if (filters.language) {
+      result = result.filter(course => course[6] === filters.language);
+    }
+    
+    if (filters.searchQuery) {
+      const query = filters.searchQuery.toLowerCase();
+      result = result.filter(course => 
+        course[1].toLowerCase().includes(query) || 
+        (course[3] && course[3].toLowerCase().includes(query))
+      );
+    }
+    
+    setFilteredCourses(result);
+  }, [filters, courses]);
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      category: "",
+      language: "",
+      searchQuery: ""
+    });
+  };
+
+  return (
+    <div className="w-full pt-20 px-4 sm:px-6 lg:px-8 min-h-screen bg-base-100">
+      <div className="max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+          <div className="mb-4 md:mb-0">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              Featured Courses
+            </h1>
+            <p className="mt-2 text-gray-600 dark:text-gray-300">
+              Browse and manage all available courses
+            </p>
+          </div>
+          
+          <button
+            onClick={() => setShowCreateModal(true)}
+            className="btn btn-primary gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+            </svg>
+            Add Course
+          </button>
+        </div>
+
+        {/* Filter Section */}
+        <div className="bg-base-200 rounded-lg p-4 mb-8 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {/* Search Input */}
+            <div className="md:col-span-2">
+              <label className="label">
+                <span className="label-text">Search Courses</span>
+              </label>
+              <input
+                type="text"
+                name="searchQuery"
+                placeholder="Search by title or description..."
+                className="input input-bordered w-full"
+                value={filters.searchQuery}
+                onChange={handleFilterChange}
+              />
+            </div>
+            
+            {/* Category Filter */}
+            <div>
+              <label className="label">
+                <span className="label-text">Filter by Category</span>
+              </label>
+              <select
+                name="category"
+                className="select select-bordered w-full"
+                value={filters.category}
+                onChange={handleFilterChange}
+              >
+                <option value="">All Categories</option>
+                {categories.map((cat, index) => (
+                  <option key={index} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
+            
+            {/* Language Filter */}
+            <div>
+              <label className="label">
+                <span className="label-text">Filter by Language</span>
+              </label>
+              <select
+                name="language"
+                className="select select-bordered w-full"
+                value={filters.language}
+                onChange={handleFilterChange}
+              >
+                <option value="">All Languages</option>
+                {languages.map((lang, index) => (
+                  <option key={index} value={lang}>{lang}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+          
+          {/* Active Filters */}
+          {(filters.category || filters.language || filters.searchQuery) && (
+            <div className="mt-4 flex items-center gap-2">
+              <span className="text-sm">Active filters:</span>
+              {filters.category && (
+                <span className="badge badge-primary">
+                  Category: {filters.category}
+                  <button 
+                    onClick={() => setFilters(prev => ({...prev, category: ""}))}
+                    className="ml-1"
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+              {filters.language && (
+                <span className="badge badge-secondary">
+                  Language: {filters.language}
+                  <button 
+                    onClick={() => setFilters(prev => ({...prev, language: ""}))}
+                    className="ml-1"
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+              {filters.searchQuery && (
+                <span className="badge badge-accent">
+                  Search: {filters.searchQuery}
+                  <button 
+                    onClick={() => setFilters(prev => ({...prev, searchQuery: ""}))}
+                    className="ml-1"
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+              <button 
+                onClick={clearFilters}
+                className="btn btn-xs btn-ghost"
+              >
+                Clear all
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Loading State */}
+        {isLoading && (
+          <div className="flex justify-center items-center py-20">
+            <span className="loading loading-spinner loading-lg text-primary"></span>
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!isLoading && filteredCourses.length === 0 && (
+          <div className="flex flex-col items-center justify-center py-12">
+            <div className="max-w-md text-center">
+              <div className="card bg-base-200 shadow-xl">
+                <figure>
+                  <img src={NotFound} alt="No courses found" className="w-full h-64 object-cover" />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title justify-center">
+                    No Courses Found
+                  </h2>
+                  <p>No courses match your current filters</p>
+                  <div className="card-actions justify-center mt-4">
+                    <button 
+                      onClick={clearFilters}
+                      className="btn btn-primary"
+                    >
+                      Clear Filters
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Courses Grid */}
+        {!isLoading && filteredCourses.length > 0 && (
+          <>
+            <div className="mb-4 text-sm text-gray-500">
+              Showing {filteredCourses.length} of {courses.length} courses
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-10">
+              {filteredCourses.map((course) => (
+                <div
+                  key={course[0]}
+                  className="card bg-base-200 shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col"
+                >
+                  <figure className="relative aspect-video overflow-hidden">
+                    <img
+                      src={course[5] || "https://via.placeholder.com/400x225?text=No+Image"}
+                      alt={course[1]}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/400x225?text=No+Image";
+                      }}
+                    />
+                    <div className="absolute top-2 right-2 flex gap-1">
+                      <span className="badge badge-sm badge-accent">{course[6]}</span>
+                    </div>
+                  </figure>
+                  
+                  <div className="card-body flex-1">
+                    <div className="flex items-start justify-between">
+                      <h2 className="card-title text-lg line-clamp-2">
+                        {course[1]}
+                      </h2>
+                    </div>
+                    
+                    <div className="mt-1 mb-3">
+                      <span className="badge badge-outline badge-primary">{course[2]}</span>
+                    </div>
+                    
+                    <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 flex-1">
+                      {course[3] && course[3] !== "None" 
+                        ? course[3] 
+                        : "No description provided."}
+                    </p>
+                    
+                    <div className="mt-4 flex justify-between items-center">
+                      <a
+                        href={course[4]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-sm btn-primary"
+                      >
+                        View Course
+                      </a>
+                      <span className="text-xs text-gray-500">
+                        {course[7] ? new Date(course[7]).toLocaleDateString() : ''}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Create Course Modal */}
+        <CreateCourse 
+          isOpen={showCreateModal} 
+          onClose={() => setShowCreateModal(false)} 
+        />
+      </div>
+    </div>
+  );
+}
+
+export default Course;
