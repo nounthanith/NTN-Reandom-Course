@@ -9,7 +9,7 @@ function Register() {
   const [form, setForm] = useState({
     name: "",
     password: "",
-    avatar: "https://media.istockphoto.com/id/1208175274/vector/avatar-vector-icon-simple-element-illustrationavatar-vector-icon-material-concept-vector.jpg?s=612x612&w=0&k=20&c=t4aK_TKnYaGQcPAC5Zyh46qqAtuoPcb-mjtQax3_9Xc=",
+    avatar: "https://i.pinimg.com/736x/1a/fd/af/1afdaf132ae4c5f7d1533d8a7bde2553.jpg",
     phone: "",
     email: "",
     mejor: "None",
@@ -65,7 +65,7 @@ function Register() {
         </h2>
         <form onSubmit={register} className="space-y-4">
           <input
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 text-black"
             name="name"
             placeholder="Name"
             value={form.name}
@@ -74,14 +74,14 @@ function Register() {
           />
 
           <input
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 text-black"
             name="phone"
             placeholder="Phone"
             value={form.phone}
             onChange={handleChange}
           />
           <input
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 text-black"
             name="email"
             type="email"
             placeholder="Email"
@@ -89,7 +89,7 @@ function Register() {
             onChange={handleChange}
           />
           <input
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 text-black"
             name="password"
             type="password"
             placeholder="Password"

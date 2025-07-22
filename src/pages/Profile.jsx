@@ -81,9 +81,9 @@ function Profile() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
+    <div className="absolute top-10 md:top-20 left-0 right-0 flex items-center justify-center px-4 py-10">
       <Toaster position="top-center" />
-      <div className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-white rounded-2xl shadow-lg p-8 md:p-10 text-center">
+      <div className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-base-300 rounded-2xl shadow-lg p-8 md:p-10 text-center">
         <div className="flex justify-center">
           <img
             className="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover border-4 border-pink-500 text-black"
@@ -91,26 +91,26 @@ function Profile() {
             alt={currentUser[1]}
           />
         </div>
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mt-4">
+        <h1 className="text-2xl md:text-3xl font-bold mt-4">
           {currentUser[1]}
         </h1>
 
         <div className="mt-6 text-gray-600 space-y-3 text-sm md:text-base">
           <p>
-            <span className="font-medium text-gray-800">📧 Email:</span>{" "}
+            <span className="font-medium ">📧 Email:</span>{" "}
             {currentUser[5]}
           </p>
           <p>
-            <span className="font-medium text-gray-800">📞 Phone:</span>{" "}
+            <span className="font-medium ">📞 Phone:</span>{" "}
             {currentUser[4]}
           </p>
           <p>
-            <span className="font-medium text-gray-800">🎓 Major:</span>{" "}
+            <span className="font-medium ">🎓 Major:</span>{" "}
             {currentUser[6]}
           </p>
           <p className="flex items-center justify-center gap-2">
             <span className="font-medium text-pink-500">📅 Registered:</span>
-            <span className="bg-gray-100 px-2 py-1 rounded-lg text-sm font-semibold text-gray-700">
+            <span className=" text-sm font-semibold">
               {new Date(currentUser[7]).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -130,7 +130,7 @@ function Profile() {
           </div>
 
           <dialog id="my_modal_5" className="modal">
-            <div className="modal-box bg-white text-gray-800 shadow-xl rounded-lg">
+            <div className="modal-box bg-white  shadow-xl rounded-lg">
               <h3 className="font-bold text-lg mb-2">Edit Profile</h3>
               <form onSubmit={handleEditSubmit} className="space-y-3">
                 <input
@@ -197,7 +197,7 @@ function Profile() {
                   </button>
                   <button
                     type="button"
-                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition"
+                    className="bg-gray-200 hover:bg-gray-300  font-semibold py-2 px-4 rounded-lg transition"
                     onClick={() =>
                       document.getElementById("my_modal_5").close()
                     }
