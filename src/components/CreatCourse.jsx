@@ -64,11 +64,11 @@ function CreateCourse({ isOpen, onClose }) {
   return (
     <>
       <Toaster position="top-center" />
-      <div className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-2xl shadow-xl w-full max-w-md relative max-h-[90vh] overflow-y-auto">
+      <div className="fixed inset-0 bg-base-300/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="bg-base-100 rounded-2xl shadow-xl w-full max-w-md relative max-h-[90vh] overflow-y-auto">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            className="absolute top-4 right-4 text-gray-500 hover:"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -87,16 +87,16 @@ function CreateCourse({ isOpen, onClose }) {
           </button>
           
           <div className="p-6">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+            <h2 className="text-2xl  font-bold text-center  mb-6">
               Create New Course
             </h2>
             <form onSubmit={createCourse} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium  mb-1">
                   Course Name
                 </label>
                 <input
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 text-black"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
                   name="name"
                   value={form.name}
                   onChange={handleChange}
@@ -105,11 +105,11 @@ function CreateCourse({ isOpen, onClose }) {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium  mb-1">
                   Category
                 </label>
                 <input
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 text-black"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
                   name="category"
                   value={form.category}
                   onChange={handleChange}
@@ -118,11 +118,11 @@ function CreateCourse({ isOpen, onClose }) {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium  mb-1">
                   Language
                 </label>
                 <input
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 text-black"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
                   name="language"
                   value={form.language}
                   onChange={handleChange}
@@ -131,11 +131,11 @@ function CreateCourse({ isOpen, onClose }) {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium  mb-1">
                   Course URL
                 </label>
                 <input
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 text-black"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
                   name="course_url"
                   value={form.course_url}
                   onChange={handleChange}
@@ -144,11 +144,11 @@ function CreateCourse({ isOpen, onClose }) {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium  mb-1">
                   Image URL (optional)
                 </label>
                 <input
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 text-black"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
                   name="course_img"
                   value={form.course_img}
                   onChange={handleChange}
@@ -156,11 +156,11 @@ function CreateCourse({ isOpen, onClose }) {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium  mb-1">
                   Description
                 </label>
                 <textarea
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 text-black"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
                   name="description"
                   rows="3"
                   value={form.description}

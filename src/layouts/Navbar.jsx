@@ -16,12 +16,12 @@ function Navbar() {
 
   return (
     <>
-        <nav className="bg-base-100 shadow-md fixed w-full top-0 z-50">
+        <nav className="bg-base-300 shadow-md fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0 text-pink-600 text-2xl font-bold">
-            <Link to="/">NTN</Link>
+            <Link to="/home">NTN</Link>
           </div>
 
           {/* Desktop Links */}
@@ -55,7 +55,7 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white px-4 pt-2 pb-4 space-y-2">
+        <div className="md:hidden  px-4 pt-2 pb-4 space-y-2">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -64,7 +64,7 @@ function Navbar() {
               className={`block ${
                 item.special
                   ? "text-pink-500 font-semibold hover:underline"
-                  : "text-gray-700 hover:text-pink-500"
+                  : " hover:text-pink-500"
               }`}
             >
               {item.name}

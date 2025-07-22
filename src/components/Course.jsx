@@ -26,7 +26,7 @@ function Course() {
   }, []);
 
   return (
-    <div className="w-full pt-20 px-4 md:px-8 lg:px-12 min-h-screen bg-base-100">
+    <div className="w-full pt-20 px-8 md:px-8 lg:px-12 min-h-screen bg-base-100">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
@@ -35,9 +35,9 @@ function Course() {
 
           <button
             onClick={() => setShowCreateModal(true)}
-            className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition text-lg whitespace-nowrap"
+            className="bg-pink-500 hover:bg-pink-600 text-white px-2 py-1 rounded-lg font-semibold shadow-lg transition text-lg whitespace-nowrap"
           >
-            + Create Course
+            + Add Course
           </button>
 
           {/* Add the modal component */}
@@ -74,7 +74,7 @@ function Course() {
             {courses.map((course) => (
               <div
                 key={course[0]}
-                className="bg-base-300 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col border border-gray-100 hover:border-pink-300 h-full"
+                className="bg-base-300 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col border dark:border-gray-500 hover:border-pink-300 h-full"
               >
                 <div className="aspect-video bg-base-100 overflow-hidden">
                   <img

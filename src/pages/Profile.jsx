@@ -81,7 +81,7 @@ function Profile() {
   };
 
   return (
-    <div className="absolute top-10 md:top-20 left-0 right-0 flex items-center justify-center px-4 py-10">
+    <div className="w-full flex  justify-center items-center pt-20 px-8 md:px-8 lg:px-12 min-h-screen bg-base-100">
       <Toaster position="top-center" />
       <div className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-base-300 rounded-2xl shadow-lg p-8 md:p-10 text-center">
         <div className="flex justify-center">
