@@ -85,7 +85,7 @@ function Admin() {
     "Image",
     "Phone",
     "Email",
-    "Role",
+    "Mejor",
     "Created At",
     "Action",
   ];
@@ -150,7 +150,7 @@ function Admin() {
       <div>
         <h1 className="text-2xl font-bold mb-4">User Dashboard</h1>
         <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300 rounded-lg">
+          <table className="min-w-full border border-gray-300 rounded-lg bg-base-300">
             <thead>
               <tr>
                 {keys.map((key, index) => (
@@ -165,11 +165,11 @@ function Admin() {
             </thead>
             <tbody>
               {currentUsers.map((user, i) => (
-                <tr key={i} className="hover:bg-base-300/30">
+                <tr key={i} className="hover:bg-base-100/30">
                   {user.map((value, j) => (
                     <td
                       key={j}
-                      className="px-4 py-2 border border-gray-200 text-sm"
+                      className="px-4 py-2 border border-gray-200 text-sm max-w-[140px] truncate whitespace-nowrap overflow-hidden"
                     >
                       {j === 3 ? (
                         <img
@@ -177,24 +177,28 @@ function Admin() {
                           alt="User"
                           className="w-10 h-10 rounded-full object-cover"
                         />
+                      ) : j === 7 ? (
+                        new Date(value).toLocaleDateString("en-GB") // dd/mm/yyyy
                       ) : (
                         value
                       )}
                     </td>
                   ))}
-                  <td className="px-4 py-2 border border-gray-200 text-sm space-x-2 w-40 flex">
-                    <button
-                      onClick={() => handleDelete(user[0])}
-                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                    >
-                      Delete
-                    </button>
-                    <button
-                      onClick={() => openEditModal(user)}
-                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                    >
-                      Update
-                    </button>
+                  <td className="px-4 py-2 border border-gray-200 text-sm w-40">
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleDelete(user[0])}
+                        className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        onClick={() => openEditModal(user)}
+                        className="bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1 rounded"
+                      >
+                        Update
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -207,7 +211,7 @@ function Admin() {
                 key={i}
                 onClick={() => handleUserPageChange(i + 1)}
                 className={`px-3 py-1 rounded ${
-                  userPage === i + 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+                  userPage === i + 1 ? "bg-blue-500 text-white" : "bg-base-300"
                 }`}
               >
                 {i + 1}
@@ -219,21 +223,48 @@ function Admin() {
 
       {/* COURSE TABLE */}
       <div>
-        <h1 className="text-2xl font-bold mb-4">Courses</h1>
+        <div className="flex justify-between items-center mb-3">
+          <h1 className="text-2xl font-bold">Courses</h1>
+        {/* Create Course Modal Button */}
+        <div className="mt-3">
+          <button
+            onClick={() => setShowCreateModal(true)}
+            className="btn btn-sm btn-primary gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Add Course
+          </button>
+          <CreateCourse
+            isOpen={showCreateModal}
+            onClose={() => setShowCreateModal(false)}
+          />
+        </div>
+        </div>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
           <>
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-300 rounded-lg">
+              <table className="min-w-full border border-gray-300 rounded-lg bg-base-300">
                 <thead>
                   <tr>
                     {[
                       "ID",
                       "Title",
                       "Category",
-                      "Price",
-                      "Instructor",
+                      "Description",
+                      "Course Url",
                       "Image",
                       "Language",
                       "Action",
@@ -249,11 +280,11 @@ function Admin() {
                 </thead>
                 <tbody>
                   {currentCourses.map((course, i) => (
-                    <tr key={i} className="hover:bg-base-300/30">
+                    <tr key={i} className="hover:bg-base-100/50">
                       {course.slice(0, 7).map((value, j) => (
                         <td
                           key={j}
-                          className="px-4 py-2 border border-gray-200 text-sm"
+                          className="px-4 py-2 border border-gray-200 text-sm max-w-[100px] truncate whitespace-nowrap overflow-hidden"
                         >
                           {j === 5 ? (
                             <img
@@ -266,9 +297,15 @@ function Admin() {
                           )}
                         </td>
                       ))}
-                      <td className="px-4 py-2 border border-gray-200 text-sm">
-                        {/* Add actions if needed */}
-                        <span className="text-gray-500 italic">None</span>
+                      <td className="px-4 py-2 border border-gray-200 text-sm w-40">
+                        <div className="flex gap-2">
+                          <button className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
+                            Delete
+                          </button>
+                          <button className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                            Update
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -284,7 +321,7 @@ function Admin() {
                   className={`px-3 py-1 rounded ${
                     coursePage === i + 1
                       ? "bg-blue-500 text-white"
-                      : "bg-gray-200"
+                      : "bg-base-300"
                   }`}
                 >
                   {i + 1}
@@ -329,32 +366,6 @@ function Admin() {
           </div>
         </div>
       )}
-
-      {/* Create Course Modal Button */}
-      <div className="mt-3">
-        <button
-          onClick={() => setShowCreateModal(true)}
-          className="btn btn-primary gap-2"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Add Course
-        </button>
-        <CreateCourse
-          isOpen={showCreateModal}
-          onClose={() => setShowCreateModal(false)}
-        />
-      </div>
     </div>
   );
 }

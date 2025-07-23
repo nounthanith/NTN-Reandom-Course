@@ -121,12 +121,12 @@ function Profile() {
           {/* Open modal with this button */}
           <div className="flex justify-end">
             <div></div>
-            <button
+            {/* <button
               className="mt-6 bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600 transition duration-300"
               onClick={() => document.getElementById("my_modal_5").showModal()}
             >
               Edit
-            </button>
+            </button> */}
           </div>
 
           <dialog id="my_modal_5" className="modal">
