@@ -1,4 +1,5 @@
 import { FiFacebook } from "react-icons/fi";
+import { IoPersonCircle } from "react-icons/io5";
 
 function Footer() {
   return (
@@ -25,7 +26,10 @@ function Footer() {
               </a>
             </li>
             <li>
-              <a href="/profile" className="hover:text-pink-500 transition-colors">
+              <a
+                href="/profile"
+                className="hover:text-pink-500 transition-colors"
+              >
                 Profile
               </a>
             </li>
@@ -43,10 +47,23 @@ function Footer() {
                 href="https://web.facebook.com/?ref=homescreenpwa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-pink-500 flex items-center gap-2 transition-colors"
+                className="hover:text-pink-500 flex items-center gap-2 transition-colors border-1 p-1 px-3 border-pink-500 rounded-full"
               >
-                <span className="text-2xl"><FiFacebook /></span>
-                Facebook
+                <span className="text-2xl">
+                  <FiFacebook />
+                </span>Facebook
+              </a>
+            </li>
+            <li className="flex">
+              <a
+                href="https://modern-portfolio-pi-two.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-pink-500 flex items-center gap-2 transition-colors border-1 p-1 px-3 border-pink-500 rounded-full"
+              >
+                <span className="text-2xl">
+                  <IoPersonCircle />
+                </span>About me
               </a>
             </li>
           </ul>
