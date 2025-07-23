@@ -20,13 +20,8 @@ function Footer() {
           </h4>
           <ul className="space-y-2">
             <li>
-              <a href="/" className="hover:text-pink-500 transition-colors">
+              <a href="/home" className="hover:text-pink-500 transition-colors">
                 Home
-              </a>
-            </li>
-            <li>
-              <a href="/create-course" className="hover:text-pink-500 transition-colors">
-                Create Course
               </a>
             </li>
             <li>
