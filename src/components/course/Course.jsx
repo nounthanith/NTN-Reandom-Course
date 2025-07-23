@@ -108,8 +108,9 @@ function Course() {
         </div>
 
         {/* Filter Section */}
-        <div className="rounded-2xl p-0 mb-10">
+        <div className="rounded-2xl p-4 bg-base-100 border border-base-300 mb-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {/* Search Field */}
             <div className="md:col-span-2">
               <label className="label font-medium text-sm text-base-content">
                 Search Courses
@@ -118,14 +119,16 @@ function Course() {
                 type="text"
                 name="searchQuery"
                 placeholder="Search by title or description..."
-                className="input input-bordered w-full"
+                className="input input-bordered input-sm w-full shadow-sm"
                 value={filters.searchQuery}
                 onChange={handleFilterChange}
               />
             </div>
 
+            {/* Category & Language Filters */}
             <div className="md:col-span-2 flex flex-col sm:flex-row gap-4">
-              <div>
+              {/* Category Filter */}
+              <div className="w-full">
                 <label className="label font-medium text-sm text-base-content">
                   Filter by Category
                 </label>
@@ -144,7 +147,8 @@ function Course() {
                 </select>
               </div>
 
-              <div>
+              {/* Language Filter */}
+              <div className="w-full">
                 <label className="label font-medium text-sm text-base-content">
                   Filter by Language
                 </label>
@@ -165,11 +169,13 @@ function Course() {
             </div>
           </div>
 
+          {/* Active Filters */}
           {(filters.category || filters.language || filters.searchQuery) && (
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <span className="text-sm font-medium text-base-content">
                 Active filters:
               </span>
+
               {filters.category && (
                 <div className="badge badge-primary gap-2">
                   Category: {filters.category}
@@ -183,6 +189,7 @@ function Course() {
                   </button>
                 </div>
               )}
+
               {filters.language && (
                 <div className="badge badge-secondary gap-2">
                   Language: {filters.language}
@@ -196,6 +203,7 @@ function Course() {
                   </button>
                 </div>
               )}
+
               {filters.searchQuery && (
                 <div className="badge badge-accent gap-2">
                   Search: {filters.searchQuery}
@@ -209,6 +217,7 @@ function Course() {
                   </button>
                 </div>
               )}
+
               <button
                 onClick={clearFilters}
                 className="btn btn-xs btn-outline btn-error ml-2"
